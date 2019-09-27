@@ -563,7 +563,7 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
             public void onKeyEntered(String key, GeoLocation location) {
 
                 for(Marker markerIt : markers){
-                    if(markerIt.getTag().equals(key))
+                    if(markerIt.getTag() != null && markerIt.getTag().equals(key))
                         return;
                 }
 
@@ -580,7 +580,7 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
             @Override
             public void onKeyExited(String key) {
                 for(Marker markerIt : markers){
-                    if(markerIt.getTag().equals(key)){
+                    if(markerIt.getTag() != null && markerIt.getTag().equals(key)){
                         markerIt.remove();
                     }
                 }
@@ -589,7 +589,7 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
             @Override
             public void onKeyMoved(String key, GeoLocation location) {
                 for(Marker markerIt : markers){
-                    if(markerIt.getTag().equals(key)){
+                    if(markerIt.getTag() != null && markerIt.getTag().equals(key)){
                         markerIt.setPosition(new LatLng(location.latitude, location.longitude));
                     }
                 }
