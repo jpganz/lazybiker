@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:hint="email"
         android:paddingTop="5dp"
+        android:layout_marginTop="100dp"
         android:id="@+id/email"/>
     <EditText
         android:layout_width="match_parent"
