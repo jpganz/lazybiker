@@ -26,6 +26,9 @@ public class CustomerLoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        System.out.println("here 2");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_login);
 

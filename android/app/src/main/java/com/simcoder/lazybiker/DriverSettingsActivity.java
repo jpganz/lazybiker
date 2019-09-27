@@ -64,7 +64,6 @@ public class DriverSettingsActivity extends AppCompatActivity {
 
         mNameField = (EditText) findViewById(R.id.name);
         mPhoneField = (EditText) findViewById(R.id.phone);
-        mCarField = (EditText) findViewById(R.id.car);
 
         mProfileImage = (ImageView) findViewById(R.id.profileImage);
 

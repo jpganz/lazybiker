@@ -28,13 +28,7 @@
         android:hint="Phone"
         android:layout_marginBottom="20sp"
         android:inputType="number"/>
-    <EditText
-        android:id="@+id/car"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="Car"
-        android:layout_marginBottom="20sp"/>
+
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

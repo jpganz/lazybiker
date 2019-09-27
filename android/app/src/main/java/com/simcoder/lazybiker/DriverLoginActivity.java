@@ -1,13 +1,19 @@
 package com.simcoder.lazybiker;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,11 +26,14 @@ import com.google.firebase.database.FirebaseDatabase;
 public class DriverLoginActivity extends AppCompatActivity {
     private EditText mEmail, mPassword;
     private Button mLogin, mRegistration;
+    private VideoView mVideoView;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        System.out.println("here 3");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_login);
 
