@@ -1,4 +1,4 @@
-package com.simcoder.uber;
+package com.simcoder.lazybiker;
 
 import android.app.Service;
 import android.content.Intent;

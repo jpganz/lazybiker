@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "759631583818",
+    "firebase_url": "https://lazybiker-9b4ea.firebaseio.com",
+    "project_id": "lazybiker-9b4ea",
+    "storage_bucket": "lazybiker-9b4ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759631583818:android:4c36615f7509f4cc4a64b3",
+        "android_client_info": {
+          "package_name": "com.simcoder.uber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759631583818-40eq3ehlqkq61erdhkhg7dl5ikcqee80.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCinvBaszutqnvukfZNNJmTIYshzO1iEOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759631583818-40eq3ehlqkq61erdhkhg7dl5ikcqee80.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

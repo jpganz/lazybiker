@@ -1,4 +1,4 @@
-package com.simcoder.uber.historyRecyclerView;
+package com.simcoder.lazybiker.historyRecyclerView;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.simcoder.uber.R;
+import com.simcoder.lazybiker.R;
 
 import java.util.List;
 

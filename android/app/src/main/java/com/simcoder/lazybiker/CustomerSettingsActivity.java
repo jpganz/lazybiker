@@ -1,23 +1,17 @@
-package com.simcoder.uber;
+package com.simcoder.lazybiker;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,55 +26,46 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DriverSettingsActivity extends AppCompatActivity {
+public class CustomerSettingsActivity extends AppCompatActivity {
 
-    private EditText mNameField, mPhoneField, mCarField;
+    private EditText mNameField, mPhoneField;
 
     private Button mBack, mConfirm;
 
     private ImageView mProfileImage;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference mDriverDatabase;
+    private DatabaseReference mCustomerDatabase;
 
     private String userID;
     private String mName;
     private String mPhone;
-    private String mCar;
-    private String mService;
     private String mProfileImageUrl;
 
     private Uri resultUri;
-
-    private RadioGroup mRadioGroup;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_settings);
-
+        setContentView(R.layout.activity_customer_settings);
 
         mNameField = (EditText) findViewById(R.id.name);
         mPhoneField = (EditText) findViewById(R.id.phone);
-        mCarField = (EditText) findViewById(R.id.car);
 
         mProfileImage = (ImageView) findViewById(R.id.profileImage);
-
-        mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
         mBack = (Button) findViewById(R.id.back);
         mConfirm = (Button) findViewById(R.id.confirm);
 
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getCurrentUser().getUid();
-        mDriverDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Drivers").child(userID);
+        mCustomerDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Customers").child(userID);
 
         getUserInfo();
 
@@ -109,7 +94,7 @@ public class DriverSettingsActivity extends AppCompatActivity {
         });
     }
     private void getUserInfo(){
-        mDriverDatabase.addValueEventListener(new ValueEventListener() {
+        mCustomerDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists() && dataSnapshot.getChildrenCount()>0){
@@ -121,24 +106,6 @@ public class DriverSettingsActivity extends AppCompatActivity {
                     if(map.get("phone")!=null){
                         mPhone = map.get("phone").toString();
                         mPhoneField.setText(mPhone);
-                    }
-                    if(map.get("car")!=null){
-                        mCar = map.get("car").toString();
-                        mCarField.setText(mCar);
-                    }
-                    if(map.get("service")!=null){
-                        mService = map.get("service").toString();
-                        switch (mService){
-                            case"UberX":
-                                mRadioGroup.check(R.id.UberX);
-                                break;
-                            case"UberBlack":
-                                mRadioGroup.check(R.id.UberBlack);
-                                break;
-                            case"UberXl":
-                                mRadioGroup.check(R.id.UberXl);
-                                break;
-                        }
                     }
                     if(map.get("profileImageUrl")!=null){
                         mProfileImageUrl = map.get("profileImageUrl").toString();
@@ -158,24 +125,11 @@ public class DriverSettingsActivity extends AppCompatActivity {
     private void saveUserInformation() {
         mName = mNameField.getText().toString();
         mPhone = mPhoneField.getText().toString();
-        mCar = mCarField.getText().toString();
-
-        int selectId = mRadioGroup.getCheckedRadioButtonId();
-
-        final RadioButton radioButton = (RadioButton) findViewById(selectId);
-
-        if (radioButton.getText() == null){
-            return;
-        }
-
-        mService = radioButton.getText().toString();
 
         Map userInfo = new HashMap();
         userInfo.put("name", mName);
         userInfo.put("phone", mPhone);
-        userInfo.put("car", mCar);
-        userInfo.put("service", mService);
-        mDriverDatabase.updateChildren(userInfo);
+        mCustomerDatabase.updateChildren(userInfo);
 
         if(resultUri != null) {
 
@@ -206,7 +160,7 @@ public class DriverSettingsActivity extends AppCompatActivity {
 
                     Map newImage = new HashMap();
                     newImage.put("profileImageUrl", downloadUrl.toString());
-                    mDriverDatabase.updateChildren(newImage);
+                    mCustomerDatabase.updateChildren(newImage);
 
                     finish();
                     return;
